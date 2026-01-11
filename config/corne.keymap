@@ -13,16 +13,17 @@
                 compatible = "zmk,keymap";
 
                 default_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BSPC |
-// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-//                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
                         bindings = <
-   &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp LCTRL &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-   &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp ESC
-                  &kp LGUI &mo 1 &kp SPACE   &kp RET &mo 2 &kp RALT
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+       &kp TAB    &kp Q    &kp W    &kp E    &kp R    &kp T                         &kp Y    &kp U    &kp I    &kp O   &kp P  &kp BSPC
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      &kp LCTL    &kp A    &kp S    &kp D    &kp F    &kp G                         &kp H    &kp J    &kp K    &kp L &kp SEMI &kp SQT
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      &kp LSFT    &kp Z    &kp X    &kp C    &kp V    &kp B                         &kp N    &kp M &kp COMMA  &kp DOT &kp FSLH &kp RSFT
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          &kp LGUI  &mo 1  &kp SPACE     &kp RET   &mo 2 &kp RALT
+                                      //`--------------------------'  `--------------------------'
+                        
                         >;
                 };
                 lower_layer {
@@ -54,3 +55,56 @@
                 };
         };
 };
+
+/ {
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <1 2>;
+            then-layer = <3>;
+        };
+    };
+};
+
+                lower_layer{
+                        bindings = <
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+     &kp TAB  &kp EXCL  &kp AT  &kp HASH  &kp DLLR &kp PRCNT                     &kp CARET &kp AMPS &kp ASTRK &kp LPAR &kp RPAR &kp BSPC
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+     &kp LCTL &kp LS(BSLH) &kp PLUS &kp LBRC &kp RBRC &trans                   &kp LEFT &kp DOWN  &kp UP  &kp RIGHT &trans  &trans
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+     &kp LSHFT &trans &trans   &trans   &trans   &trans                          &trans &trans   &trans   &trans   &trans   &kp ESC
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          &kp LGUI &trans &kp SPACE   &kp RET   &mo 3 &kp RALT
+                                      //`--------------------------'  `--------------------------'
+                        >;
+                };
+        
+                raise_layer {
+                        bindings = <
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+       &kp TAB    &kp 1    &kp 2    &kp 3    &kp 4    &kp 5                       &kp 6    &kp 7    &kp 8    &kp 9   &kp 0  &kp BSPC
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      &kp LCTL  &kp UNDER &kp EQUAL &kp LBKT &kp RBKT &trans                     &kp MINUS  &kp EQUAL &kp LBRC &kp MINUS &kp TILDE &kp GRAVE
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      &kp LSHFT &trans &trans  &trans   &trans   &trans                        &kp UNDER &kp PLUS &kp LBRC &kp DOT &kp BSLH   &kp ESC
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          &kp LGUI   &mo 3  &kp SPACE     &kp RET &trans &kp RALT
+                                      //`--------------------------'  `--------------------------'
+                        >;
+                };
+
+
+                adjust {
+                        bindings = <
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      &bootloader  &sys_reset    &trans   &trans  &trans                          &trans  &trans   &trans  &trans   &sys_reset &bootloader
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+     &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4 &trans &trans  &trans  &trans   &trans   &trans
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+     &trans  &trans   &trans   &trans   &trans   &trans                         &trans  &trans   &trans   &trans    PASSW    &kp LC(LA(DEL))
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          &kp LGUI &trans  &kp SPACE     &kp RET &trans &kp RALT
+                                      //`--------------------------'  `--------------------------'
+                        >;
+                };
