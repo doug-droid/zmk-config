@@ -43,7 +43,7 @@
                 raise_layer {
                         bindings = <
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       &kp TAB    &kp 1    &kp 2    &kp 3    &kp 4    &kp 5                       &kp 6    &kp 7    &kp 8    &kp 9   &kp 0  &kp BSPC
+      &kp TAB   &kp N1  &kp N2  &kp N3   &kp N4   &kp N5                        &kp N6    &kp N7    &kp N8    &kp N9   &kp N0  &kp BSPC
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       &kp LCTL  &kp UNDER &kp EQUAL &kp LBKT &kp RBKT &trans                     &kp MINUS  &kp EQUAL &kp LBRC &kp MINUS &kp TILDE &kp GRAVE
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -90,7 +90,7 @@
                 = <&macro_press &kp LSHFT>
                 , <&macro_tap &kp L>
                 , <&macro_release &kp LSHFT>
-                , <&macro_tap &kp I &kp F &kp E &kp L &kp I &kp N &kp E &kp 8 &kp 3 &kp EXCL &kp EXCL>
+                , <&macro_tap &kp I &kp F &kp E &kp L &kp I &kp N &kp E &kp N8 &kp N3 &kp EXCL &kp EXCL>
                 ;
         };
     };
